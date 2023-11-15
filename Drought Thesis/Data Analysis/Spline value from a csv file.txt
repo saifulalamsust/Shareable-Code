@@ -1,0 +1,24 @@
+import os
+
+# Define the input and output folder paths
+input_folder = "/content/Monthly SSP245"
+output_folder = "/content/SSP245 FF"
+
+# Create the output folder if it doesn't exist
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+
+# Loop through each file in the input folder
+for filename in os.listdir(input_folder):
+    if filename.endswith(".csv"):
+        # Read the CSV file
+        with open(os.path.join(input_folder, filename), "r") as f:
+            lines = f.readlines()
+
+        # Write the text file with only selected values from column 2
+        output_filename = os.path.splitext(filename)[0] + ".txt"
+        with open(os.path.join(output_folder, output_filename), "w") as f:
+            for line in lines[457:817]:
+                values = line.strip().split(",")
+                f.write(values[1] + " ")
+                f.write("\n")

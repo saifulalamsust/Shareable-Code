@@ -1,0 +1,5 @@
+from google.colab import files
+import shutil
+
+shutil.make_archive("Monthly SSP245", 'zip', "Monthly SSP245")
+files.download("Monthly SSP245.zip")
